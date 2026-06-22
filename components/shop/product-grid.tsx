@@ -39,8 +39,8 @@ export function ProductGrid({ products, loading }: ProductGridProps) {
     return (
       <div className="flex flex-col items-center justify-center py-20 text-center">
         <div className="text-6xl mb-4">🐱</div>
-        <h3 className="text-lg font-semibold text-gray-900">No products found</h3>
-        <p className="text-gray-500 mt-1">Try adjusting your filters or search terms.</p>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Бүтээгдэхүүн олдсонгүй</h3>
+        <p className="text-gray-500 mt-1">Шүүлтүүр эсвэл хайлтаа өөрчилж үзнэ үү.</p>
       </div>
     );
   }

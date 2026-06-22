@@ -106,6 +106,18 @@ export async function deleteProduct(productId: string) {
   return { success: true };
 }
 
+export async function getProductsByIds(ids: string[]) {
+  if (ids.length === 0) return [];
+  return prisma.product.findMany({
+    where: { id: { in: ids }, status: "ACTIVE" },
+    include: {
+      images: { orderBy: { order: "asc" }, take: 1 },
+      category: true,
+      _count: { select: { reviews: true } },
+    },
+  });
+}
+
 export async function getProducts(params: {
   category?: string;
   brand?: string;

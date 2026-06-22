@@ -49,20 +49,20 @@ export function ProductCard({
     e.preventDefault();
     if (stock === 0) return;
     addItem({ id: crypto.randomUUID(), productId: id, name, price, image, stock });
-    toast.success(`${name} added to cart!`);
+    toast.success(`${name} сагсанд нэмэгдлээ!`);
   }
 
   function handleWishlist(e: React.MouseEvent) {
     e.preventDefault();
     toggle(id);
-    toast.success(wishlisted ? "Removed from wishlist" : "Added to wishlist");
+    toast.success(wishlisted ? "Хүслийн жагсаалтаас хасагдлаа" : "Хүслийн жагсаалтад нэмэгдлээ");
   }
 
   return (
     <Link href={`/products/${slug}`} className="group block">
-      <div className="relative bg-white rounded-xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5">
+      <div className="relative bg-white dark:bg-slate-800 rounded-xl border border-gray-100 dark:border-slate-700 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5">
         {/* Image */}
-        <div className="relative aspect-square overflow-hidden bg-gray-50">
+        <div className="relative aspect-square overflow-hidden bg-gray-50 dark:bg-slate-700">
           <Image
             src={image || "/placeholder-product.jpg"}
             alt={name}
@@ -80,7 +80,7 @@ export function ProductCard({
           <button
             onClick={handleWishlist}
             className={cn(
-              "absolute top-2 right-2 p-2 rounded-full bg-white shadow transition-all opacity-0 group-hover:opacity-100",
+              "absolute top-2 right-2 p-2 rounded-full bg-white dark:bg-slate-700 shadow transition-all opacity-0 group-hover:opacity-100",
               wishlisted && "opacity-100"
             )}
             aria-label="Toggle wishlist"
@@ -93,9 +93,9 @@ export function ProductCard({
 
         {/* Info */}
         <div className="p-4 space-y-2">
-          <div className="text-xs text-orange-500 font-medium uppercase tracking-wide">{category}</div>
+          <div className="text-xs text-blue-600 font-medium uppercase tracking-wide">{category}</div>
           {brand && <div className="text-xs text-gray-400">{brand}</div>}
-          <h3 className="text-sm font-semibold text-gray-900 line-clamp-2 leading-tight">{name}</h3>
+          <h3 className="text-sm font-semibold text-gray-900 dark:text-white line-clamp-2 leading-tight">{name}</h3>
 
           {/* Rating */}
           {reviewCount > 0 && (
@@ -118,7 +118,7 @@ export function ProductCard({
           {/* Price & Cart */}
           <div className="flex items-center justify-between pt-1">
             <div>
-              <span className="text-base font-bold text-gray-900">{formatPrice(price)}</span>
+              <span className="text-base font-bold text-gray-900 dark:text-white">{formatPrice(price)}</span>
               {comparePrice && (
                 <span className="ml-2 text-sm text-gray-400 line-through">{formatPrice(comparePrice)}</span>
               )}

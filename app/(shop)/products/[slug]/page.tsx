@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     where: { slug },
     include: { images: { take: 1 } },
   });
-  if (!product) return { title: "Product Not Found" };
+  if (!product) return { title: "Бүтээгдэхүүн олдсонгүй" };
   return {
     title: product.name,
     description: product.description.slice(0, 160),
@@ -85,7 +85,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
       <div className="mt-8 grid lg:grid-cols-2 gap-12">
         {/* Images */}
         <div className="space-y-4">
-          <div className="relative aspect-square rounded-2xl overflow-hidden bg-gray-50 border border-gray-100">
+          <div className="relative aspect-square rounded-2xl overflow-hidden bg-gray-50 dark:bg-slate-700 border border-gray-100 dark:border-slate-700">
             <Image
               src={product.images[0]?.url || "/placeholder-product.jpg"}
               alt={product.name}
@@ -97,7 +97,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
           {product.images.length > 1 && (
             <div className="grid grid-cols-5 gap-2">
               {product.images.slice(0, 5).map((img, i) => (
-                <div key={img.id} className="relative aspect-square rounded-lg overflow-hidden bg-gray-50 border border-gray-200">
+                <div key={img.id} className="relative aspect-square rounded-lg overflow-hidden bg-gray-50 dark:bg-slate-700 border border-gray-200 dark:border-slate-700">
                   <Image src={img.url} alt={`${product.name} ${i + 1}`} fill className="object-cover" />
                 </div>
               ))}
@@ -113,7 +113,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
               {product.brand && <Badge variant="outline">{product.brand}</Badge>}
               {product.featured && <Badge>Featured</Badge>}
             </div>
-            <h1 className="text-3xl font-bold text-gray-900">{product.name}</h1>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{product.name}</h1>
           </div>
 
           {/* Rating Summary */}
@@ -121,14 +121,14 @@ export default async function ProductDetailPage({ params }: PageProps) {
             <div className="flex items-center gap-3">
               <StarRating rating={avgRating} size="md" />
               <span className="text-sm text-gray-500">
-                {avgRating.toFixed(1)} ({product.reviews.length} review{product.reviews.length !== 1 ? "s" : ""})
+                {avgRating.toFixed(1)} ({product.reviews.length} сэтгэгдэл)
               </span>
             </div>
           )}
 
           {/* Price */}
           <div className="flex items-baseline gap-3">
-            <span className="text-4xl font-bold text-gray-900">{formatPrice(Number(product.price))}</span>
+            <span className="text-4xl font-bold text-gray-900 dark:text-white">{formatPrice(Number(product.price))}</span>
             {product.comparePrice && (
               <>
                 <span className="text-xl text-gray-400 line-through">{formatPrice(Number(product.comparePrice))}</span>
@@ -142,8 +142,8 @@ export default async function ProductDetailPage({ params }: PageProps) {
           {/* Stock */}
           <div className="flex items-center gap-2">
             <div className={`h-2 w-2 rounded-full ${product.stock > 0 ? "bg-green-500" : "bg-red-500"}`} />
-            <span className="text-sm font-medium text-gray-700">
-              {product.stock > 10 ? "In Stock" : product.stock > 0 ? `Only ${product.stock} left` : "Out of Stock"}
+            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              {product.stock > 10 ? "Нөөцтэй" : product.stock > 0 ? `Зөвхөн ${product.stock} үлдсэн` : "Нөөц дууссан"}
             </span>
           </div>
 
@@ -156,19 +156,19 @@ export default async function ProductDetailPage({ params }: PageProps) {
 
           {/* Description */}
           <div>
-            <h3 className="font-semibold text-gray-900 mb-2">Description</h3>
-            <p className="text-gray-600 leading-relaxed">{product.description}</p>
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Тайлбар</h3>
+            <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{product.description}</p>
           </div>
 
           {/* Specs */}
           {product.specifications && Object.keys(product.specifications as object).length > 0 && (
             <div>
-              <h3 className="font-semibold text-gray-900 mb-3">Specifications</h3>
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-3">Үзүүлэлтүүд</h3>
               <dl className="space-y-2">
                 {Object.entries(product.specifications as Record<string, string>).map(([key, value]) => (
                   <div key={key} className="flex gap-4 text-sm">
                     <dt className="text-gray-500 w-28 flex-shrink-0 capitalize">{key}</dt>
-                    <dd className="text-gray-900 font-medium">{value}</dd>
+                    <dd className="text-gray-900 dark:text-white font-medium">{value}</dd>
                   </div>
                 ))}
               </dl>
@@ -178,19 +178,19 @@ export default async function ProductDetailPage({ params }: PageProps) {
           {/* Trust */}
           <div className="grid grid-cols-3 gap-4 pt-2">
             {[
-              { icon: Truck, label: "Free shipping over $50" },
-              { icon: Shield, label: "Quality guarantee" },
-              { icon: RefreshCw, label: "30-day returns" },
+              { icon: Truck, label: "$50-аас дээш захиалгад үнэгүй хүргэлт" },
+              { icon: Shield, label: "Чанарын баталгаа" },
+              { icon: RefreshCw, label: "30 хоногийн буцаалт" },
             ].map((item) => (
               <div key={item.label} className="flex flex-col items-center gap-1 text-center">
-                <item.icon className="h-5 w-5 text-orange-500" />
+                <item.icon className="h-5 w-5 text-blue-600" />
                 <span className="text-xs text-gray-500">{item.label}</span>
               </div>
             ))}
           </div>
 
           {product.sku && (
-            <p className="text-xs text-gray-400">SKU: {product.sku}</p>
+            <p className="text-xs text-gray-400">Код: {product.sku}</p>
           )}
         </div>
       </div>
@@ -208,7 +208,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
       {/* Related */}
       {relatedProducts.length > 0 && (
         <div className="mt-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8">You May Also Like</h2>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">Танд таалагдаж болох</h2>
           <ProductGrid products={relatedProducts} />
         </div>
       )}

@@ -58,76 +58,76 @@ export function CheckoutClient({ user }: CheckoutClientProps) {
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
-      <Breadcrumb crumbs={[{ label: "Cart", href: "/cart" }, { label: "Checkout" }]} />
-      <h1 className="text-2xl font-bold text-gray-900 mt-6 mb-10">Checkout</h1>
+      <Breadcrumb crumbs={[{ label: "Сагс", href: "/cart" }, { label: "Төлбөр тооцоо" }]} />
+      <h1 className="text-2xl font-bold text-gray-900 dark:text-white mt-6 mb-10">Төлбөр тооцоо</h1>
 
       <form onSubmit={handleSubmit}>
         <div className="grid lg:grid-cols-3 gap-10">
           {/* Form */}
           <div className="lg:col-span-2 space-y-8">
             {/* Shipping */}
-            <div className="bg-white rounded-xl border border-gray-100 p-6 shadow-sm space-y-4">
-              <h2 className="font-bold text-gray-900 text-lg">Shipping Information</h2>
+            <div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-100 dark:border-slate-700 p-6 shadow-sm space-y-4">
+              <h2 className="font-bold text-gray-900 dark:text-white text-lg">Хүргэлтийн мэдээлэл</h2>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="firstName">First Name *</Label>
+                  <Label htmlFor="firstName">Нэр *</Label>
                   <Input id="firstName" name="firstName" defaultValue={nameParts[0]} required className="mt-1" />
                 </div>
                 <div>
-                  <Label htmlFor="lastName">Last Name *</Label>
+                  <Label htmlFor="lastName">Овог *</Label>
                   <Input id="lastName" name="lastName" defaultValue={nameParts[1]} required className="mt-1" />
                 </div>
               </div>
               <div>
-                <Label htmlFor="email">Email *</Label>
+                <Label htmlFor="email">И-мэйл *</Label>
                 <Input id="email" name="email" type="email" defaultValue={user.email ?? ""} required className="mt-1" />
               </div>
               <div>
-                <Label htmlFor="phone">Phone</Label>
+                <Label htmlFor="phone">Утас</Label>
                 <Input id="phone" name="phone" type="tel" className="mt-1" />
               </div>
               <div>
-                <Label htmlFor="address1">Address *</Label>
+                <Label htmlFor="address1">Хаяг *</Label>
                 <Input id="address1" name="address1" required className="mt-1" />
               </div>
               <div>
-                <Label htmlFor="address2">Apartment, suite, etc.</Label>
+                <Label htmlFor="address2">Байр, тоот гэх мэт</Label>
                 <Input id="address2" name="address2" className="mt-1" />
               </div>
               <div className="grid grid-cols-3 gap-4">
                 <div className="col-span-1">
-                  <Label htmlFor="city">City *</Label>
+                  <Label htmlFor="city">Хот *</Label>
                   <Input id="city" name="city" required className="mt-1" />
                 </div>
                 <div>
-                  <Label htmlFor="state">State *</Label>
+                  <Label htmlFor="state">Муж/Аймаг *</Label>
                   <Input id="state" name="state" required className="mt-1" />
                 </div>
                 <div>
-                  <Label htmlFor="postalCode">ZIP *</Label>
+                  <Label htmlFor="postalCode">Шуудангийн код *</Label>
                   <Input id="postalCode" name="postalCode" required className="mt-1" />
                 </div>
               </div>
               <div>
-                <Label htmlFor="country">Country *</Label>
+                <Label htmlFor="country">Улс *</Label>
                 <Input id="country" name="country" defaultValue="US" required className="mt-1" />
               </div>
             </div>
 
             {/* Payment (placeholder) */}
-            <div className="bg-white rounded-xl border border-gray-100 p-6 shadow-sm space-y-4">
-              <h2 className="font-bold text-gray-900 text-lg">Payment</h2>
-              <div className="bg-orange-50 rounded-lg p-4 text-sm text-orange-700 flex items-center gap-2">
+            <div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-100 dark:border-slate-700 p-6 shadow-sm space-y-4">
+              <h2 className="font-bold text-gray-900 dark:text-white text-lg">Төлбөр</h2>
+              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 text-sm text-blue-700 flex items-center gap-2">
                 <Lock className="h-4 w-4" />
-                This is a demo. No real payment is processed.
+                Энэ нь жишээ загвар. Бодит төлбөр хийгдэхгүй.
               </div>
               <div>
-                <Label>Card Number</Label>
+                <Label>Картын дугаар</Label>
                 <Input className="mt-1" placeholder="4242 4242 4242 4242" readOnly defaultValue="4242 4242 4242 4242" />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <Label>Expiry</Label>
+                  <Label>Дуусах хугацаа</Label>
                   <Input className="mt-1" placeholder="MM/YY" readOnly defaultValue="12/28" />
                 </div>
                 <div>
@@ -139,25 +139,25 @@ export function CheckoutClient({ user }: CheckoutClientProps) {
 
             {/* Coupon */}
             <div className="flex gap-2">
-              <Input name="couponCode" placeholder="Coupon code (e.g. NEWCAT20)" className="flex-1" />
+              <Input name="couponCode" placeholder="Купон код (жш. NEWCAT20)" className="flex-1" />
             </div>
           </div>
 
           {/* Summary */}
           <div className="space-y-6">
-            <div className="bg-gray-50 rounded-2xl p-6 space-y-4">
-              <h2 className="font-bold text-gray-900">Order Summary</h2>
+            <div className="bg-gray-50 dark:bg-slate-800 rounded-2xl p-6 space-y-4">
+              <h2 className="font-bold text-gray-900 dark:text-white">Захиалгын хураангуй</h2>
               <div className="space-y-3">
                 {items.map((item) => (
                   <div key={item.productId} className="flex gap-3">
-                    <div className="relative h-14 w-14 flex-shrink-0 rounded-lg overflow-hidden bg-white">
+                    <div className="relative h-14 w-14 flex-shrink-0 rounded-lg overflow-hidden bg-white dark:bg-slate-700">
                       <Image src={item.image || "/placeholder-product.jpg"} alt={item.name} fill className="object-cover" />
-                      <div className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-orange-500 text-white text-xs flex items-center justify-center">
+                      <div className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-blue-600 text-white text-xs flex items-center justify-center">
                         {item.quantity}
                       </div>
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-gray-900 truncate">{item.name}</p>
+                      <p className="text-sm font-medium text-gray-900 dark:text-white truncate">{item.name}</p>
                       <p className="text-sm text-gray-500">{formatPrice(item.price)}</p>
                     </div>
                     <p className="text-sm font-semibold">{formatPrice(item.price * item.quantity)}</p>
@@ -167,26 +167,26 @@ export function CheckoutClient({ user }: CheckoutClientProps) {
               <Separator />
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-gray-500">Subtotal</span>
+                  <span className="text-gray-500">Нийт дүн</span>
                   <span>{formatPrice(subtotal)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-500">Shipping</span>
-                  <span>{shipping === 0 ? <span className="text-green-600">Free</span> : formatPrice(shipping)}</span>
+                  <span className="text-gray-500">Хүргэлт</span>
+                  <span>{shipping === 0 ? <span className="text-green-600">Үнэгүй</span> : formatPrice(shipping)}</span>
                 </div>
               </div>
               <Separator />
               <div className="flex justify-between font-bold text-base">
-                <span>Total</span>
+                <span>Нийт</span>
                 <span>{formatPrice(total)}</span>
               </div>
             </div>
 
             <Button type="submit" className="w-full" size="lg" disabled={loading}>
-              {loading ? "Placing Order..." : `Place Order · ${formatPrice(total)}`}
+              {loading ? "Захиалга өгч байна..." : `Захиалга өгөх · ${formatPrice(total)}`}
             </Button>
             <p className="text-xs text-center text-gray-400 flex items-center justify-center gap-1">
-              <Lock className="h-3 w-3" /> Secure & encrypted checkout
+              <Lock className="h-3 w-3" /> Аюулгүй шифрлэгдсэн төлбөр
             </p>
           </div>
         </div>

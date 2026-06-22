@@ -36,10 +36,10 @@ export default async function OrdersPage() {
     return (
       <div className="text-center py-20">
         <div className="text-6xl mb-4">📦</div>
-        <h2 className="text-xl font-bold text-gray-900 mb-2">No orders yet</h2>
-        <p className="text-gray-500 mb-6">Start shopping to see your orders here.</p>
-        <Link href="/products" className="text-orange-500 font-medium hover:underline">
-          Browse Products →
+        <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Захиалга байхгүй байна</h2>
+        <p className="text-gray-500 mb-6">Захиалга хийгээд энд харна уу.</p>
+        <Link href="/products" className="text-blue-600 font-medium hover:underline">
+          Бүтээгдэхүүн үзэх →
         </Link>
       </div>
     );
@@ -47,23 +47,23 @@ export default async function OrdersPage() {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-lg font-bold text-gray-900">Order History</h2>
+      <h2 className="text-lg font-bold text-gray-900 dark:text-white">Захиалгын түүх</h2>
       {orders.map((order) => (
-        <div key={order.id} className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
-          <div className="flex items-center justify-between p-4 border-b border-gray-100">
+        <div key={order.id} className="bg-white dark:bg-slate-800 rounded-xl border border-gray-100 dark:border-slate-700 shadow-sm overflow-hidden">
+          <div className="flex items-center justify-between p-4 border-b border-gray-100 dark:border-slate-700">
             <div>
-              <p className="font-semibold text-gray-900">Order #{order.orderNumber}</p>
+              <p className="font-semibold text-gray-900 dark:text-white">Захиалга #{order.orderNumber}</p>
               <p className="text-sm text-gray-500">{formatDate(order.createdAt)}</p>
             </div>
             <div className="text-right space-y-1">
               <Badge variant={statusColors[order.status] ?? "secondary"}>{order.status}</Badge>
-              <p className="text-sm font-bold text-gray-900">{formatPrice(Number(order.total))}</p>
+              <p className="text-sm font-bold text-gray-900 dark:text-white">{formatPrice(Number(order.total))}</p>
             </div>
           </div>
           <div className="p-4">
             <div className="flex items-center gap-3">
               {order.items.map((item) => (
-                <div key={item.id} className="relative h-14 w-14 rounded-lg overflow-hidden bg-gray-50 flex-shrink-0">
+                <div key={item.id} className="relative h-14 w-14 rounded-lg overflow-hidden bg-gray-50 dark:bg-slate-700 flex-shrink-0">
                   <Image
                     src={item.product.images[0]?.url ?? "/placeholder-product.jpg"}
                     alt={item.product.name}

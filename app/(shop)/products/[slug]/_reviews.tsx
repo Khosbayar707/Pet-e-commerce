@@ -38,7 +38,7 @@ export function ReviewSection({ product, reviews, avgRating, userId }: ReviewSec
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (rating === 0) {
-      toast.error("Please select a rating");
+      toast.error("Үнэлгээ сонгоно уу");
       return;
     }
     setSubmitting(true);
@@ -49,7 +49,7 @@ export function ReviewSection({ product, reviews, avgRating, userId }: ReviewSec
     if (result?.error) {
       toast.error(result.error);
     } else {
-      toast.success("Review submitted! It will appear after moderation.");
+      toast.success("Сэтгэгдэл илгээгдлээ! Шалгагдсаны дараа харагдана.");
       setShowForm(false);
     }
     setSubmitting(false);
@@ -59,47 +59,47 @@ export function ReviewSection({ product, reviews, avgRating, userId }: ReviewSec
     <div className="space-y-8">
       <div className="flex items-end justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">Customer Reviews</h2>
+          <h2 className="text-2xl font-bold text-gray-900">Үйлчлүүлэгчдийн сэтгэгдэл</h2>
           {reviews.length > 0 && (
             <div className="flex items-center gap-3 mt-2">
               <StarRating rating={avgRating} size="lg" />
-              <span className="text-gray-500">{avgRating.toFixed(1)} out of 5 ({reviews.length} reviews)</span>
+              <span className="text-gray-500">{avgRating.toFixed(1)} / 5 ({reviews.length} сэтгэгдэл)</span>
             </div>
           )}
         </div>
         {!hasReviewed && userId && !showForm && (
           <Button onClick={() => setShowForm(true)} variant="outline">
-            Write a Review
+            Сэтгэгдэл бичих
           </Button>
         )}
         {!userId && (
           <Link href="/login">
-            <Button variant="outline">Sign in to Review</Button>
+            <Button variant="outline">Нэвтрэн сэтгэгдэл бичих</Button>
           </Link>
         )}
       </div>
 
       {showForm && (
         <form onSubmit={handleSubmit} className="bg-gray-50 rounded-2xl p-6 space-y-4">
-          <h3 className="font-semibold text-gray-900">Write Your Review</h3>
+          <h3 className="font-semibold text-gray-900">Сэтгэгдэлээ бичнэ үү</h3>
           <div>
-            <Label className="mb-2 block">Your Rating *</Label>
+            <Label className="mb-2 block">Таны үнэлгээ *</Label>
             <StarRating rating={rating} size="lg" interactive onRate={setRating} />
           </div>
           <div>
-            <Label htmlFor="title" className="mb-1 block">Title</Label>
-            <Input id="title" name="title" placeholder="Sum up your experience" />
+            <Label htmlFor="title" className="mb-1 block">Гарчиг</Label>
+            <Input id="title" name="title" placeholder="Туршлагаа товчлон бичнэ үү" />
           </div>
           <div>
-            <Label htmlFor="body" className="mb-1 block">Review *</Label>
-            <Textarea id="body" name="body" placeholder="Share your thoughts..." required rows={4} />
+            <Label htmlFor="body" className="mb-1 block">Сэтгэгдэл *</Label>
+            <Textarea id="body" name="body" placeholder="Бодлоо хуваалцана уу..." required rows={4} />
           </div>
           <div className="flex gap-3">
             <Button type="submit" disabled={submitting}>
-              {submitting ? "Submitting..." : "Submit Review"}
+              {submitting ? "Илгээж байна..." : "Сэтгэгдэл илгээх"}
             </Button>
             <Button type="button" variant="outline" onClick={() => setShowForm(false)}>
-              Cancel
+              Цуцлах
             </Button>
           </div>
         </form>
@@ -108,7 +108,7 @@ export function ReviewSection({ product, reviews, avgRating, userId }: ReviewSec
       {reviews.length === 0 ? (
         <div className="text-center py-12 text-gray-400">
           <div className="text-5xl mb-3">⭐</div>
-          <p>No reviews yet. Be the first to share your experience!</p>
+          <p>Сэтгэгдэл байхгүй байна. Хамгийн түрүүнд сэтгэгдэлээ үлдээгээрэй!</p>
         </div>
       ) : (
         <div className="space-y-6">
@@ -125,7 +125,7 @@ export function ReviewSection({ product, reviews, avgRating, userId }: ReviewSec
                       className="rounded-full"
                     />
                   ) : (
-                    <div className="h-10 w-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-700 font-semibold">
+                    <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-semibold">
                       {review.user.name?.charAt(0).toUpperCase() ?? "U"}
                     </div>
                   )}

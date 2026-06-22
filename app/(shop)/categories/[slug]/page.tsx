@@ -63,7 +63,7 @@ export default async function CategoryPage({ params, searchParams }: PageProps) 
         {category.description && (
           <p className="text-gray-500 mt-2">{category.description}</p>
         )}
-        <p className="text-sm text-gray-400 mt-1">{total} products</p>
+        <p className="text-sm text-gray-400 mt-1">{total} бүтээгдэхүүн</p>
       </div>
       <div className="mt-8">
         <ProductGrid products={products} />

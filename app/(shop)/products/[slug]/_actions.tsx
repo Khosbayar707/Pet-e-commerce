@@ -35,12 +35,12 @@ export function ProductActions({ product }: ProductActionsProps) {
         stock: product.stock,
       });
     }
-    toast.success(`${quantity} × ${product.name} added to cart!`);
+    toast.success(`${quantity} × ${product.name} сагсанд нэмэгдлээ!`);
   }
 
   function handleWishlist() {
     toggle(product.id);
-    toast.success(wishlisted ? "Removed from wishlist" : "Added to wishlist");
+    toast.success(wishlisted ? "Хүслийн жагсаалтаас хасагдлаа" : "Хүслийн жагсаалтад нэмэгдлээ");
   }
 
   return (
@@ -74,7 +74,7 @@ export function ProductActions({ product }: ProductActionsProps) {
           disabled={product.stock === 0}
         >
           <ShoppingCart className="h-5 w-5" />
-          {product.stock === 0 ? "Out of Stock" : "Add to Cart"}
+          {product.stock === 0 ? "Нөөц дууссан" : "Сагсанд нэмэх"}
         </Button>
         <Button
           size="lg"

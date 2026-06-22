@@ -21,20 +21,20 @@ export default async function OrderSuccessPage({ searchParams }: PageProps) {
           </div>
         </div>
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Order Confirmed! 🎉</h1>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Захиалга баталгаажлаа! 🎉</h1>
           {order && (
-            <p className="text-gray-500">Order number: <strong className="text-gray-900">{order}</strong></p>
+            <p className="text-gray-500">Захиалгын дугаар: <strong className="text-gray-900 dark:text-white">{order}</strong></p>
           )}
         </div>
-        <p className="text-gray-600 leading-relaxed">
-          Thank you for your purchase! We&apos;ll send you an email confirmation shortly. Your cat is going to love their new products!
+        <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+          Худалдан авалт хийсэнд баярлалаа! Бид тантай удахгүй и-мэйлээр холбогдох болно. Таны муур шинэ бараануудаа дуртай байх нь!
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link href="/account/orders">
-            <Button variant="outline">View My Orders</Button>
+            <Button variant="outline">Миний захиалгууд</Button>
           </Link>
           <Link href="/products">
-            <Button>Continue Shopping</Button>
+            <Button>Үргэлжлүүлэн хэсэх</Button>
           </Link>
         </div>
       </div>

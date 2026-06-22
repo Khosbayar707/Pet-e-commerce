@@ -52,29 +52,29 @@ export function ProductFilters({ categories, brands }: ProductFiltersProps) {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2 font-semibold text-gray-900">
+        <div className="flex items-center gap-2 font-semibold text-gray-900 dark:text-white">
           <SlidersHorizontal className="h-4 w-4" />
-          Filters
+          Шүүлтүүр
         </div>
         {hasFilters && (
           <Button variant="ghost" size="sm" onClick={clearAll} className="text-xs text-gray-500 h-auto p-0">
-            <X className="h-3 w-3 mr-1" /> Clear all
+            <X className="h-3 w-3 mr-1" /> Цэвэрлэх
           </Button>
         )}
       </div>
 
       {/* Sort */}
       <div>
-        <Label className="text-sm font-semibold mb-2 block">Sort By</Label>
+        <Label className="text-sm font-semibold mb-2 block">Эрэмбэлэх</Label>
         <Select value={currentSort} onValueChange={(v) => updateParam("sort", v)}>
           <SelectTrigger>
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="newest">Newest First</SelectItem>
-            <SelectItem value="price_asc">Price: Low to High</SelectItem>
-            <SelectItem value="price_desc">Price: High to Low</SelectItem>
-            <SelectItem value="popular">Most Popular</SelectItem>
+            <SelectItem value="newest">Шинэ эхлээд</SelectItem>
+            <SelectItem value="price_asc">Үнэ: Бага→Их</SelectItem>
+            <SelectItem value="price_desc">Үнэ: Их→Бага</SelectItem>
+            <SelectItem value="popular">Хамгийн алдартай</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -83,7 +83,7 @@ export function ProductFilters({ categories, brands }: ProductFiltersProps) {
 
       {/* Category */}
       <div>
-        <Label className="text-sm font-semibold mb-3 block">Category</Label>
+        <Label className="text-sm font-semibold mb-3 block">Ангилал</Label>
         <div className="space-y-2">
           {categories.map((cat) => (
             <label key={cat.id} className="flex items-center gap-2 cursor-pointer">
@@ -91,7 +91,7 @@ export function ProductFilters({ categories, brands }: ProductFiltersProps) {
                 checked={currentCategory === cat.slug}
                 onCheckedChange={(checked) => updateParam("category", checked ? cat.slug : null)}
               />
-              <span className="text-sm text-gray-700">{cat.name}</span>
+              <span className="text-sm text-gray-700 dark:text-gray-300">{cat.name}</span>
             </label>
           ))}
         </div>
@@ -103,7 +103,7 @@ export function ProductFilters({ categories, brands }: ProductFiltersProps) {
       {brands.length > 0 && (
         <>
           <div>
-            <Label className="text-sm font-semibold mb-3 block">Brand</Label>
+            <Label className="text-sm font-semibold mb-3 block">Брэнд</Label>
             <div className="space-y-2">
               {brands.map((brand) => (
                 <label key={brand} className="flex items-center gap-2 cursor-pointer">
@@ -122,11 +122,11 @@ export function ProductFilters({ categories, brands }: ProductFiltersProps) {
 
       {/* Price */}
       <div>
-        <Label className="text-sm font-semibold mb-3 block">Price Range</Label>
+        <Label className="text-sm font-semibold mb-3 block">Үнийн хязгаар</Label>
         <div className="flex gap-2 items-center">
           <Input
             type="number"
-            placeholder="Min"
+            placeholder="Хамгийн бага"
             defaultValue={searchParams.get("minPrice") || ""}
             onBlur={(e) => updateParam("minPrice", e.target.value || null)}
             className="w-full"
@@ -135,7 +135,7 @@ export function ProductFilters({ categories, brands }: ProductFiltersProps) {
           <span className="text-gray-400">—</span>
           <Input
             type="number"
-            placeholder="Max"
+            placeholder="Хамгийн их"
             defaultValue={searchParams.get("maxPrice") || ""}
             onBlur={(e) => updateParam("maxPrice", e.target.value || null)}
             className="w-full"

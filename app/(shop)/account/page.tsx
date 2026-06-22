@@ -30,7 +30,7 @@ export default async function AccountPage() {
   return (
     <div className="space-y-6">
       {/* Profile Card */}
-      <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
+      <div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-100 dark:border-slate-700 shadow-sm p-6">
         <div className="flex items-center gap-6">
           <Avatar className="h-20 w-20">
             <AvatarImage src={user.image ?? undefined} />
@@ -39,12 +39,12 @@ export default async function AccountPage() {
             </AvatarFallback>
           </Avatar>
           <div>
-            <h2 className="text-xl font-bold text-gray-900">{user.name}</h2>
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white">{user.name}</h2>
             <p className="text-gray-500">{user.email}</p>
             <div className="flex gap-2 mt-2">
-              <Badge variant="secondary">Customer</Badge>
+              <Badge variant="secondary">Үйлчлүүлэгч</Badge>
               {recentOrder && (
-                <Badge variant="outline">Member since {formatDate(recentOrder.createdAt)}</Badge>
+                <Badge variant="outline">Гишүүн болсон {formatDate(recentOrder.createdAt)}</Badge>
               )}
             </div>
           </div>
@@ -56,12 +56,12 @@ export default async function AccountPage() {
         <Link href="/account/orders">
           <Card className="hover:shadow-md transition-shadow cursor-pointer">
             <CardContent className="p-6 flex items-center gap-4">
-              <div className="h-12 w-12 bg-orange-100 rounded-full flex items-center justify-center">
-                <Package className="h-6 w-6 text-orange-500" />
+              <div className="h-12 w-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
+                <Package className="h-6 w-6 text-blue-600" />
               </div>
               <div>
-                <div className="text-2xl font-bold text-gray-900">{orderCount}</div>
-                <div className="text-sm text-gray-500">Orders</div>
+                <div className="text-2xl font-bold text-gray-900 dark:text-white">{orderCount}</div>
+                <div className="text-sm text-gray-500">Захиалга</div>
               </div>
             </CardContent>
           </Card>
@@ -74,7 +74,7 @@ export default async function AccountPage() {
               </div>
               <div>
                 <div className="text-2xl font-bold text-gray-900">{wishlistCount}</div>
-                <div className="text-sm text-gray-500">Wishlist</div>
+                <div className="text-sm text-gray-500">Хүсэл</div>
               </div>
             </CardContent>
           </Card>
@@ -82,12 +82,12 @@ export default async function AccountPage() {
         <Link href="/account/addresses">
           <Card className="hover:shadow-md transition-shadow cursor-pointer">
             <CardContent className="p-6 flex items-center gap-4">
-              <div className="h-12 w-12 bg-blue-100 rounded-full flex items-center justify-center">
+              <div className="h-12 w-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
                 <MapPin className="h-6 w-6 text-blue-500" />
               </div>
               <div>
                 <div className="text-2xl font-bold text-gray-900">{addressCount}</div>
-                <div className="text-sm text-gray-500">Addresses</div>
+                <div className="text-sm text-gray-500">Хаяг</div>
               </div>
             </CardContent>
           </Card>
@@ -99,13 +99,13 @@ export default async function AccountPage() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <ShoppingBag className="h-5 w-5" /> Recent Order
+              <ShoppingBag className="h-5 w-5" /> Сүүлийн захиалга
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex items-center justify-between">
               <div>
-                <p className="font-semibold text-gray-900">#{recentOrder.orderNumber}</p>
+                <p className="font-semibold text-gray-900 dark:text-white">#{recentOrder.orderNumber}</p>
                 <p className="text-sm text-gray-500">{formatDate(recentOrder.createdAt)}</p>
               </div>
               <div className="text-right">

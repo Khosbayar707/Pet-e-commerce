@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { MapPin, Plus } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { AddAddressDialog, EditAddressDialog } from "./_address-form";
 
-export const metadata: Metadata = { title: "My Addresses" };
+export const metadata: Metadata = { title: "Хадгалагдсан хаягууд" };
 
 export default async function AddressesPage() {
   const session = await auth();
@@ -17,30 +17,28 @@ export default async function AddressesPage() {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h2 className="text-lg font-bold text-gray-900">Saved Addresses</h2>
-        <Button size="sm" className="gap-2">
-          <Plus className="h-4 w-4" /> Add Address
-        </Button>
+        <h2 className="text-lg font-bold text-gray-900 dark:text-white">Хадгалагдсан хаягууд</h2>
+        <AddAddressDialog />
       </div>
 
       {addresses.length === 0 ? (
         <div className="text-center py-16">
           <MapPin className="h-10 w-10 text-gray-200 mx-auto mb-3" />
-          <p className="text-gray-500">No saved addresses yet.</p>
-          <p className="text-sm text-gray-400 mt-1">Add an address for faster checkout.</p>
+          <p className="text-gray-500">Хадгалагдсан хаяг байхгүй байна.</p>
+          <p className="text-sm text-gray-400 mt-1">Хурдан төлбөр тооцоо хийхийн тулд хаяг нэмнэ үү.</p>
         </div>
       ) : (
         <div className="grid md:grid-cols-2 gap-4">
           {addresses.map((address) => (
-            <div key={address.id} className="bg-white rounded-xl border border-gray-100 shadow-sm p-5 space-y-2">
+            <div key={address.id} className="bg-white dark:bg-slate-800 rounded-xl border border-gray-100 dark:border-slate-700 shadow-sm p-5 space-y-2">
               <div className="flex items-start justify-between">
-                <div>
-                  {address.label && <p className="font-semibold text-gray-900">{address.label}</p>}
-                  {address.isDefault && <Badge variant="secondary" className="text-xs">Default</Badge>}
+                <div className="flex items-center gap-2">
+                  {address.label && <p className="font-semibold text-gray-900 dark:text-white">{address.label}</p>}
+                  {address.isDefault && <Badge variant="secondary" className="text-xs">Үндсэн</Badge>}
                 </div>
-                <Button variant="ghost" size="sm">Edit</Button>
+                <EditAddressDialog address={address} />
               </div>
-              <p className="text-sm text-gray-700">
+              <p className="text-sm text-gray-700 dark:text-gray-300">
                 {address.firstName} {address.lastName}
               </p>
               <p className="text-sm text-gray-500">

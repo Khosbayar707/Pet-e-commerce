@@ -73,7 +73,7 @@ async function ProductList({ searchParams }: PageProps) {
     <>
       <div className="flex items-center justify-between mb-6">
         <p className="text-sm text-gray-500">
-          {total} product{total !== 1 ? "s" : ""} found
+          {total} бүтээгдэхүүн олдлоо
         </p>
       </div>
       <ProductGrid products={products} />
@@ -116,8 +116,8 @@ export default async function ProductsPage({ searchParams }: PageProps) {
         {/* Products */}
         <div className="flex-1">
           <div className="flex items-center justify-between mb-6">
-            <h1 className="text-2xl font-bold text-gray-900">
-              {params.search ? `Search: "${params.search}"` : params.category ? "Category" : "All Products"}
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+              {params.search ? `Хайлт: "${params.search}"` : params.category ? "Ангилал" : "Бүх бүтээгдэхүүн"}
             </h1>
           </div>
           <Suspense
